@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZS Motors × Auto Hurtz</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #00d8ff;
+      text-align: center;
+    }
+    form {
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background: #00d8ff;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>ZS Motors × Auto Hurtz</h1>
+
+  <form id="infoForm">
+    <label for="name">नाम:</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="make">गाड़ी कंपनी:</label>
+    <input type="text" id="make" name="make" required />
+
+    <label for="fuel">फ्यूल टाइप:</label>
+    <select id="fuel" name="fuel">
+      <option value="Petrol">पेट्रोल</option>
+      <option value="Diesel">डीज़ल</option>
+      <option value="EV">इलेक्ट्रिक</option>
+    </select>
+
+    <label for="module">मॉड्यूल टाइप:</label>
+    <select id="module" name="module">
+      <option value="ECM">ECM</option>
+      <option value="ABS">ABS</option>
+      <option value="BCM">BCM</option>
+      <option value="NOx Sensor">NOx Sensor</option>
+      <option value="Transmission">Transmission</option>
+    </select>
+
+    <label for="issue">ट्रबल कोड / समस्या:</label>
+    <textarea id="issue" name="issue" rows="3" required></textarea>
+
+    <label for="file">फाइल अपलोड करें (स्क्रीनशॉट या रिपोर्ट):</label>
+    <input type="file" id="file" name="file" />
+
+    <label for="contact">आपका मोबाइल नंबर (WhatsApp):</label>
+    <input type="tel" id="contact" name="contact" required />
+
+    <button type="button" onclick="sendToWhatsApp()">WhatsApp पर भेजें</button>
+  </form>
+
+  <script>
+    function sendToWhatsApp() {
+      const name = document.getElementById('name').value;
+      const make = document.getElementById('make').value;
+      const fuel = document.getElementById('fuel').value;
+      const module = document.getElementById('module').value;
+      const issue = document.getElementById('issue').value;
+      const contact = document.getElementById('contact').value;
+
+      const message = `नया सबमिशन:\n\nनाम: ${name}\nगाड़ी: ${make}\nफ्यूल टाइप: ${fuel}\nमॉड्यूल: ${module}\nसमस्या: ${issue}\nWhatsApp नंबर: ${contact}`;
+      
+      const encodedMessage = encodeURIComponent(message);
+      const phoneNumber = "918766447938"; // ← यहां अपना WhatsApp नंबर डाला है
+
+      window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
